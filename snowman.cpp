@@ -18,7 +18,7 @@ static int int_from_conf(size_t index, string conf){
 // throws when config < 11111111 or config > 44444444
 struct MyException : public exception {
    const char * what () const throw () {
-      return "invalid configuration for snowman. each digit should be bitween 1 and 4";
+      return "Invalid configuration for snowman. Input should be 8 digits bitween 1 and 4";
    }
 };
 
