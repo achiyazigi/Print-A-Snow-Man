@@ -2,6 +2,7 @@
 #include "snowman.hpp"
 #include <string>
 #include <stdexcept>
+
 using namespace std;
 
 static void swap_char(char *a, char *b){
@@ -17,16 +18,17 @@ static int int_from_conf(size_t index, string conf){
 
 // throws when config < 11111111 or config > 44444444
 struct MyException : public exception {
-   const char * what () const throw () {
+   const char * what () const noexcept override{
       return "Invalid configuration for snowman. Input should be 8 digits bitween 1 and 4";
    }
 };
 
 namespace ariel{
     string snowman(const int config){
-        
+        const int FIRST_CONFIG = 11111111;
+        const int LAST_CONFIG = 44444444;
         //input validation
-        if(config < 11111111 || config > 44444444){
+        if(config < FIRST_CONFIG || config > LAST_CONFIG){
             throw (MyException());
         } 
 
