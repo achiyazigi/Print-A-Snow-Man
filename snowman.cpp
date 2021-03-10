@@ -16,9 +16,9 @@ static int int_from_conf(size_t index, string conf){
     return conf.at(index)-'1';
 }
 
-// throws when config < 11111111 or config > 44444444
+// throws when config invalid
 struct MyException : public exception {
-   const char * what () const noexcept override{
+   const char *what () const noexcept override{
       return "Invalid configuration for snowman. Input should be 8 digits bitween 1 and 4";
    }
 };
@@ -26,15 +26,18 @@ struct MyException : public exception {
 namespace ariel{
     string snowman(const int config){
         const int FIRST_CONFIG = 11111111;
-        const int LAST_CONFIG = 44444444;
         //input validation
-        if(config < FIRST_CONFIG || config > LAST_CONFIG){
+        if(config < FIRST_CONFIG){
             throw (MyException());
         } 
-
+        
         //convertion
         string conf = to_string(config);
 
+        //input validation
+        if(conf.find_first_not_of("056789")==std::string::npos){
+            throw (MyException());
+        }
         //decompose
         size_t index = 0;
         const int h = int_from_conf(index++, conf);
