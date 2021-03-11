@@ -25,19 +25,15 @@ struct MyException : public exception {
 
 namespace ariel{
     string snowman(const int config){
-        const int FIRST_CONFIG = 11111111;
-        //input validation
-        if(config < FIRST_CONFIG){
-            throw (MyException());
-        } 
-        
+        const short INPUT_LENGTH = 8;
         //convertion
         string conf = to_string(config);
 
         //input validation
-        if(conf.find_first_not_of("056789")==std::string::npos){
+        if(conf.find_first_not_of("056789")==std::string::npos || conf.length() != INPUT_LENGTH){
             throw (MyException());
         }
+
         //decompose
         size_t index = 0;
         const int h = int_from_conf(index++, conf);
@@ -61,7 +57,13 @@ namespace ariel{
             swap_char(&ru, &rd);
         }
 
-        // constructing the snowman
+        /*
+            constructing the snowman
+                H
+            lu(lNr)ru
+            ld( T )rd
+              ( B )
+        */        
         return  H.at(h)+'\n'+
                 lu+"("+E.at(l)+N.at(n)+E.at(r)+')'+ru+'\n'+
                 ld+'('+T.at(t)+')'+rd+'\n'+

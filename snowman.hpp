@@ -27,7 +27,7 @@ const std::array< std::string, NUM_OF_OPTIONS> N = {",", ".", "_", " "};
  *|  Eyes sprites  |
  *|================|
  */
-const std::array< std::string, NUM_OF_OPTIONS> E = {".", "o", "0", "-"};
+const std::array< std::string, NUM_OF_OPTIONS> E = {".", "o", "O", "-"};
 
 /*|=================|
  *|Left Hand sprites|
